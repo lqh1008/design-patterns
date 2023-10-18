@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>单例模式弹框</title>
+</head>
+<style>
+    #modal {
+        height: 200px;
+        width: 200px;
+        line-height: 200px;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid black;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <button id='open'>打开弹框</button>
+    <button id='close'>关闭弹框</button>
+</body>
+<script>
+    const Modal = (function () {
+        let modal = null
+        return function () {
+            if (!modal) {
+                modal = document.createElement('div')
+                modal.id = 'modal'
+                modal.innerHTML = '我是模态框'
+                //   modal.style.display = 
+                document.body.appendChild(modal)
+            }
+
+            // document.querySelector('#modal').style.display='block'
+
+            return modal
+        }
+    }())
+
+
+
+    document.querySelector('#open').addEventListener('click', () => {
+        const modal = new Modal()
+        modal.style.display = 'block'
+    })
+
+    document.querySelector('#close').addEventListener('click', () => {
+        const modal = new Modal()
+        if (modal) {
+            modal.style.display = 'none'
+        }
+    })
+</script>
+
+</html>
